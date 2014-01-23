@@ -33,7 +33,7 @@ public class Generale {
 		try {
 			fr = new FileReader(f);
 			BufferedReader b = new BufferedReader(fr);
-			int i = 0, j = 0;
+			int i = 0;
 			int tmp = b.read();
 			while(tmp != -1){
 				if(tmp != 44 && tmp != 10){ //44 = ',' et 10 = '\n'

@@ -1,12 +1,8 @@
 package teste;
 
 import static org.junit.Assert.*;
-
 import java.io.IOException;
-
-import models.Generale;
 import models.Morse;
-
 import org.junit.Test;
 
 

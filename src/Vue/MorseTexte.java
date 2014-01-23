@@ -51,6 +51,6 @@ public class MorseTexte {
 	//--TESTE--
 	public static void main(String[] args){
 		Morse modele = new Morse();
-		MorseTexte m = new MorseTexte(modele);
+		new MorseTexte(modele);
 	}
 }
