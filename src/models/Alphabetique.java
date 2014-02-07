@@ -39,7 +39,7 @@ public class Alphabetique {
 				}
 			}
 		}else{ //Codage avec cle
-
+			
 		}
 
 		return chaineMelange;
@@ -58,11 +58,8 @@ public class Alphabetique {
 				referenceCle[i] = cle.charAt(i);
 
 			int index = cle.length();
-			System.out.println(index);
 			for(int i=0 ; i<26 ; i++){
-				System.out.println("i: "+(char)(i+97));
 				if(!cle.contains(((char)(i+97))+"")){
-					System.out.println(index);
 					referenceCle[index] = (char) (i+97);
 					index++;
 				}
