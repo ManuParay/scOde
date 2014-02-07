@@ -18,7 +18,9 @@ public class MorseTexte {
 
 	//--METHODE--
 	private void startMorse(){
+		boolean valeurValide;
 		while(true){
+			valeurValide = true;
 			String chaineACoder = "";
 			int choix = 1;
 			System.out.println("Entrez la phrase à coder en morse: ");
@@ -41,10 +43,13 @@ public class MorseTexte {
 				}
 			}catch(NumberFormatException e){
 				System.out.println("Valeur invalide");
-				return ;
+				valeurValide = false;
+				sc.nextLine();
 			}
-			System.out.println(morseModel.morse(chaineACoder));
-			sc.nextLine();
+			if(valeurValide){
+				System.out.println(morseModel.coder(chaineACoder));
+				sc.nextLine();
+			}
 		}
 	}
 

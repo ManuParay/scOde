@@ -17,7 +17,9 @@ public class AlphabetiqueTexte {
 
 	//--METHODE--
 	private void startMelangeAlphabetique(){
+		boolean valeurValide;
 		while(true){
+			valeurValide = true;
 			String chaineACoder = "";
 			int choix = 1;
 			System.out.println("Entrez la phrase à melanger: ");
@@ -28,10 +30,13 @@ public class AlphabetiqueTexte {
 				melangeAlphabetiqueModele.setDecalage(choix);
 			}catch(NumberFormatException e){
 				System.out.println("Valeur invalide");
-				return ;
+				valeurValide = false;
+				sc.nextLine();
 			}
-			System.out.println(melangeAlphabetiqueModele.melanger(chaineACoder));
-			sc.nextLine();
+			if(valeurValide){
+				System.out.println(melangeAlphabetiqueModele.coder(chaineACoder));
+				sc.nextLine();
+			}
 		}
 	}
 

@@ -17,21 +17,29 @@ public class AlphanumeriqueTexte {
 
 	//--METHODE--
 	private void startMelangeAlphanumerique(){
+		boolean valeurValide;
 		while(true){
+			valeurValide = true;
 			String chaineACoder = "";
-			int choix = 1;
+			int choixDecalage = 1;
 			System.out.println("Entrez la phrase à melanger: ");
 			chaineACoder = sc.nextLine();
-			System.out.println("Choisissez le decalage:");
+			System.out.println("Choisissez le decalage:");			
 			try{
-				choix = Integer.parseInt(sc.next());
-				melangeAlphanumeriqueModele.setDecalage(choix);
+				choixDecalage = Integer.parseInt(sc.nextLine());
+				melangeAlphanumeriqueModele.setDecalage(choixDecalage);
 			}catch(NumberFormatException e){
 				System.out.println("Valeur invalide");
-				return ;
+				valeurValide = false;
 			}
-			System.out.println(melangeAlphanumeriqueModele.coder(chaineACoder));
-			sc.nextLine();
+			if(valeurValide){
+				System.out.println("Ecrire les nombres en binaire (O/n)?");
+				String tmp = sc.nextLine(); 
+				if(tmp.equals("n")) melangeAlphanumeriqueModele.setBinaire(false);
+				else melangeAlphanumeriqueModele.setBinaire(true);
+
+				System.out.println(melangeAlphanumeriqueModele.coder(chaineACoder));
+			}
 		}
 	}
 

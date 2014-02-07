@@ -8,11 +8,12 @@ import java.io.IOException;
 
 public class Morse {
 	//--ATTRIBUT--
-	private Object ti, ta, tiInvesre, taInverse, separateurLettre, separateurMot, separateurPhrase;
-	private int[][] reference; //Contient le nombre de TA TI TA et TI d'une lettre. Ex: a = 0*TA + 1*TI + 1*TA + 0*TI.
 	private final String PATH_RESSOURCE = "src/ressource/";
 	private final String REFERENCE_MORSE = "referenceMorse.csv";
-	private char[] accent;
+	private final char[] ACCENT = Generale.g.getRefAccent();
+	
+	private Object ti, ta, tiInvesre, taInverse, separateurLettre, separateurMot, separateurPhrase;
+	private int[][] reference; //Contient le nombre de TA TI TA et TI d'une lettre. Ex: a = 0*TA + 1*TI + 1*TA + 0*TI.
 	private boolean estInverse, estBinaire;
 
 	//--CONSTRUCTEUR--
@@ -26,7 +27,6 @@ public class Morse {
 		separateurPhrase = "///";
 		estInverse = false;
 		estBinaire = false;
-		accent = Generale.g.getRefAccent();
 		reference = new int[36][4]; //L'alphabet + 0 à 9 = 37
 		initReference();
 	}
@@ -69,13 +69,13 @@ public class Morse {
 	 * @param chaine, la chaine a transformer.
 	 * @return un String la chaine transformer.
 	 */
-	public String morse(String chaine){
+	public String coder(String chaine){
 		String newChaine = "";
 		chaine = chaine.toLowerCase();
 		for(int i=0 ; i<chaine.length() ; i++){ //Pour chaque lettre de la chaine
 			char charActu = chaine.charAt(i); 
 			if(charActu >= 224 && charActu <= 253 ){ //char accentue
-				charActu = accent[charActu-224]; //Debut des char accentue a 128.
+				charActu = ACCENT[charActu-224]; //Debut des char accentue a 128.
 			}
 			if(charActu > 96 && charActu < 123){ //97 = a et 122 = z
 				for(int j=0 ; j<reference[0].length ; j++){ //Un lettre est composé d'un certain nombre de TA puis TI puis TA puis TI.
@@ -89,7 +89,8 @@ public class Morse {
 						}
 					}
 				}
-				if(i+1<chaine.length() && (int)chaine.charAt(i+1) > 96 && (int)chaine.charAt(i+1) < 123)
+				if(i+1<chaine.length() && ((int)chaine.charAt(i+1) > 96 && (int)chaine.charAt(i+1) < 123 
+						|| (int)chaine.charAt(i+1) > 223 && (int)chaine.charAt(i+1) < 254))
 					newChaine += separateurLettre;
 			}else if(charActu == ' '){
 				newChaine += separateurMot;
